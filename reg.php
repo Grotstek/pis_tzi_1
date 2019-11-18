@@ -10,31 +10,39 @@
 	<script>
 	jQuery(document).ready(function() {
     jQuery(".register").bind("click", function() {
-
-        var login = sha256(jQuery('.login').val());
-		var password = sha256(jQuery('.password').val());
-        var name = jQuery('.name').val();
-        
-        
-		jQuery('.login').val('');
-		jQuery('.password').val('');
-		jQuery('.name').val('');
-
 		
-        jQuery.ajax({
-            url: "insert.php",
-            type: "POST",
-            data: {login:login, password:password, name:name}, // Передаем данные для записи
-            success: function(xhr, data, textStatus) {
-				alert(xhr);	
-			},
-			error:	function(xhr, textStatus, errorObj){ 
-				alert(textStatus);
-			}
+		if(jQuery('.login').val() && jQuery('.password').val()){
+			var login = sha256(jQuery('.login').val());
+			var password = sha256(jQuery('.password').val());
+			var name = jQuery('.name').val();
+			
+			
+			jQuery('.login').val('');
+			jQuery('.password').val('');
+			jQuery('.name').val('');
 
-        });
-        
-        window.location.replace("index.php");
+			
+			jQuery.ajax({
+				url: "insert.php",
+				type: "POST",
+				data: {login:login, password:password, name:name}, // Передаем данные для записи
+				success: function(xhr, data, textStatus) {
+					alert(xhr);
+					if(xhr === "Успех")
+					{
+						window.location.replace("index.php");
+					}	
+				},
+				error:	function(xhr, textStatus, errorObj){ 
+					alert(textStatus);
+				}
+
+			});
+			
+			
+		}else{
+			alert("Заполните все поля");
+		}
 	return false;
     });
 });
