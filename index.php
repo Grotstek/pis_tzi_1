@@ -43,24 +43,29 @@
 		
 		jQuery(document).ready(function() {
 			jQuery(".loginf").bind("click", function() {
-				var login = sha256(jQuery('.login').val());
-				var password = sha256(jQuery('.password').val());
 				
+				if(jQuery('.login').val() && jQuery('.password').val()){
 				
-				jQuery.ajax({
-					url: "select.php",
-					type: "POST",
+					var login = sha256(jQuery('.login').val());
+					var password = sha256(jQuery('.password').val());
+					
+					
+					jQuery.ajax({
+						url: "select.php",
+						type: "POST",
 
-					data: {login:login, password:password}, // Передаем данные для записи
-					success: function(xhr, data, textStatus) {
-						alert(xhr);	
-					},
-					error:	function(xhr, textStatus, errorObj){ 
-						alert(textStatus);
-		
-					}
-				});
-				
+						data: {login:login, password:password}, // Передаем данные для записи
+						success: function(xhr, data, textStatus) {
+							alert(xhr);	
+						},
+						error:	function(xhr, textStatus, errorObj){ 
+							alert(textStatus);
+			
+						}
+					});
+				}else{
+					alert("Заполните все поля");
+				}
 			return false;
 			});
 		});
