@@ -1,5 +1,5 @@
 <?php
-$mysqli = new Mysqli('localhost', 'admin', 'adminstrongPassword', 'pis_tzi');
+$mysqli = new Mysqli('localhost', 'root', '', 'pis_tzi');
 
 $login = trim($_POST['login']);
 $password = trim($_POST['password']);
@@ -20,4 +20,6 @@ if($login && $password){
 }
 echo $massage;
 ?>
+
+
 
