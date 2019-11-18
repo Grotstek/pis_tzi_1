@@ -1,5 +1,5 @@
 <?php
-$mysqli = new Mysqli('localhost', 'admin', 'adminstrongPassword', 'pis_tzi');
+$mysqli = new Mysqli('localhost', 'root', '', 'pis_tzi');
 
 $login = trim($_POST['login']);
 $password = trim($_POST['password']);
@@ -17,7 +17,8 @@ if($login && $password && $name){
 	$query = $mysqli->query("INSERT INTO `sha` VALUES(NULL, '$login', '$password', '$name')");
 	echo 'Успех';
 }else{
-	echo 'Не удалось записать';
+	echo 'Заполните все поля';
 }
 
 ?>
+
